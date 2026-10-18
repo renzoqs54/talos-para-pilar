@@ -40,7 +40,7 @@ const WORD_MS = 85;
 function stepDuration(i: number) {
   if (i === 0) return 1800;
   if (i === TOTAL - 1) return 2600;
-  return 1300 + LINES[i - 1].split(" ").length * WORD_MS + 900;
+  return 1300 + (LINES[i - 1] ?? "").split(" ").length * WORD_MS + 900;
 }
 
 function useReducedMotion() {
