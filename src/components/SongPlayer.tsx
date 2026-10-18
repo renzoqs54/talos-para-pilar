@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import songAsset from "@/assets/natsunokiri.mp3.asset.json";
 
-export const SONG_SRC = "/audio/natsunokiri.mp3";
+export const SONG_SRC = songAsset.url;
 
 function fmt(s: number) {
   if (!Number.isFinite(s) || s < 0) return "0:00";
