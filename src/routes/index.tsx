@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import bg from "@/assets/floral-bg.jpg";
 import peony from "@/assets/peony.png";
 import rose from "@/assets/rose.png";
+import { SongPlayer } from "@/components/SongPlayer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -203,6 +204,9 @@ function Index() {
             aria-live="polite"
             className="paper-card relative w-full max-w-2xl rounded-[2rem] px-7 pb-28 pt-12 md:px-14 md:pt-16"
           >
+            <div className="-mx-2 mb-10 md:-mx-6">
+              <SongPlayer />
+            </div>
             {step >= 1 && (
               <h2 className="word-in text-center font-display text-5xl font-bold text-primary md:text-6xl">Pilar</h2>
             )}
