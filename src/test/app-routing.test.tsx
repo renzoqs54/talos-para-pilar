@@ -14,4 +14,8 @@ describe("App routing", () => {
 
     expect(matches.at(-1)?.routeId).not.toBe(rootRouteId);
   });
+  it("matches the page under /un-jardin-para-pilar/", () => {
+    const router = createRouter({ routeTree, basepath: "/un-jardin-para-pilar/", context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes("/un-jardin-para-pilar/").at(-1)?.routeId).toBe("/");
+  });
 });

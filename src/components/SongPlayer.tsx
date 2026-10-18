@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import songAsset from "@/assets/natsunokiri.mp3.asset.json";
+import { publicAssetPath } from "@/lib/public-assets";
 
-export const SONG_SRC = songAsset.url;
+export const SONG_SRC = publicAssetPath("audio/natsunokiri.mp3");
 
 function fmt(s: number) {
   if (!Number.isFinite(s) || s < 0) return "0:00";
@@ -38,7 +38,7 @@ export function SongPlayer() {
         ref={audio}
         src={SONG_SRC}
         preload="metadata"
-        onPlay={() => setPlaying(true)}
+        onPlay={() => { setPlaying(true); setError(false); }}
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
         onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
@@ -107,7 +107,7 @@ export function SongPlayer() {
       </div>
       {error && (
         <p role="status" className="mt-2 text-center text-xs italic text-muted-foreground">
-          La canción no está disponible todavía.
+          No se pudo cargar la canción. Comprueba que el archivo original natsunokiri.mp3 esté en public/audio y vuelve a cargar la página.
         </p>
       )}
     </div>
