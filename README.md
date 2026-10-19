@@ -1,44 +1,33 @@
-# Talos Para Pilar
+# Para Pilar — un pequeño jardín
 
-Build a beautiful, highly visual and interactive Spanish-language single-page website dedicated to Pilar, with a floral design and timed text reveal animation. Use an elegant editorial / botanical aesthetic: layered flower illustrations and a floral background, delicate petals drifting slowly, warm cream paper, muted blush pink, burgundy, sage green and soft gold accents, refined serif typography paired with readable body type, subtle glow and depth. Make it polished, emotionally moving but not overly romantic, responsive on mobile and desktop, accessible, and performant. Main experience: an opening screen with flowers and a clear button such as “Abrir este pequeño jardín”; when clicked, transition into the letter scene where the text appears progressively over time in readable chunks/paragraphs with a gentle fade/typewriter-like reveal, not too fast, and with a pause/replay control and a visible progress indicator. Ensure the complete text is included exactly in Spanish, with paragraph breaks and bold title/sign-off:
+Carta y canción para Pilar (TanStack Start + Vite). Se puede publicar como sitio estático en GitHub Pages:
 
-Pilar
-Hay personas que no necesitan intentarlo para dejar una huella.
-Tú eres así: llegas con tu manera de mirar, de reír, de estar… y algo cambia.
-Admiro tu fuerza, incluso cuando dudas.
-Admiro tu sensibilidad, esa forma tuya de sentir el mundo sin hacer demasiado ruido.
-Admiro tus imperfecciones, porque son parte de lo que te hace verdadera.
-No eres perfecta. Pero a veces pareces acercarte peligrosamente a serlo.
-Y quizá por eso me nació escribirte una canción.
-Porque en cada nota cabía algo que no sabía decir de otra manera.
-Una melodía de nostalgia, de noches largas y de un deseo que, tal vez, puede ser real.
-Cada acorde guarda una impresión tuya: una sonrisa, una conversación, la calma que dejas cuando te vas.
-No es una promesa ni una confesión.
-Es solo una canción que encontró en ti su razón de existir.
-Y si alguna vez la escuchas con los ojos cerrados, quizá descubras todo lo increíble que alguien puede ver en ti.
+**https://renzoqs54.github.io/talos-para-pilar/**
 
-Para Pilar
-Una canción nacida de la admiración, la nostalgia y la posibilidad.
+## Cómo funciona la versión estática
 
-Add small interactive touches: hovering/tapping flowers causes a subtle bloom or sparkle, a few floating petals, and a final visual flourish when the whole letter is revealed. Keep motion graceful and not distracting; respect reduced-motion settings. Avoid generic template look. No backend needed. Please build the actual working page, not just a plan.
+- `vite.config.ts` solo cambia cuando `GITHUB_PAGES=true`: desactiva el servidor (Nitro), usa la base `/talos-para-pilar/` y prerenderiza `/` a HTML.
+- Sin esa variable (vista previa de Lovable) la configuración es la original.
+- La salida publicable queda en `dist/client/` (`index.html`, `assets/`, `audio/natsunokiri.mp3`, `favicon.ico`).
+- El audio se lee de `public/audio/natsunokiri.mp3` con la base correcta. Si falta, el reproductor muestra un mensaje de error.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/94a7b4ed-e33e-430f-bd89-e122165335c8).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Build local:
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+bun install
+bun run test
+GITHUB_PAGES=true bun run build   # resultado en dist/client
 ```
+
+## Publicar en GitHub Pages (pasos manuales)
+
+1. En GitHub, con la cuenta `renzoqs54`, crea el repositorio **`talos-para-pilar`** (el nombre debe coincidir exactamente con la base).
+   - Desde Lovable: Project settings → Git → conectar GitHub (crea un repositorio nuevo; renómbralo a `talos-para-pilar` en GitHub si tiene otro nombre), o
+   - Descarga el código y súbelo: `git init && git add . && git commit -m "init" && git branch -M main && git remote add origin https://github.com/renzoqs54/talos-para-pilar.git && git push -u origin main`
+2. Asegúrate de que `public/audio/natsunokiri.mp3` está incluido en el repositorio.
+3. En el repositorio: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+4. Haz push a `main` (o ejecuta manualmente *Actions → Deploy to GitHub Pages → Run workflow*).
+5. El workflow `.github/workflows/deploy-pages.yml` instala dependencias, ejecuta tests, compila con `GITHUB_PAGES=true`, comprueba que existen `index.html` y el mp3, y despliega `dist/client`.
+6. Al terminar, abre https://renzoqs54.github.io/talos-para-pilar/
+
+Si cambias el nombre del repositorio, actualiza la base en `vite.config.ts` y `src/lib/public-assets.ts`.
