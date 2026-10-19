@@ -4,7 +4,7 @@
 // Without it (Lovable preview/publish) the config is unchanged.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const pages = process.env.GITHUB_PAGES === "true";
+const pages = process.env["GITHUB_PAGES"] === "true";
 const PAGES_BASE = "/talos-para-pilar/";
 
 export default defineConfig({
