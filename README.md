@@ -8,7 +8,7 @@ Carta y canción para Pilar (TanStack Start + Vite). Se puede publicar como siti
 
 - `vite.config.ts` solo cambia cuando `GITHUB_PAGES=true`: desactiva el servidor (Nitro), usa la base `/talos-para-pilar/` y prerenderiza `/` a HTML.
 - Sin esa variable (vista previa de Lovable) la configuración es la original.
-- La salida publicable queda en `dist/client/` (`index.html`, `assets/`, `audio/natsunokiri.mp3`, `favicon.ico`).
+- La salida publicable queda en `dist/client/` (`index.html`, `assets/`, `audio/natsunokiri.mp3`, `favicon.png`).
 - El audio se lee de `public/audio/natsunokiri.mp3` con la base correcta. Si falta, el reproductor muestra un mensaje de error.
 
 Build local:

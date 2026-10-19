@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the botanical favicon in `public/favicon.png` and reference it through `publicAssetPath` in the root head so Lovable and repository-based GitHub Pages resolve the same icon.
