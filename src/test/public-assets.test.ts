@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { GITHUB_PAGES_BASE, publicAssetPath } from "@/lib/public-assets";
+import { GITHUB_PAGES_BASE, publicAssetPath, TAB_ICON_PATH } from "@/lib/public-assets";
 
 describe("Public audio paths", () => {
   it("serves the original audio under the GitHub repository base", () => {
@@ -11,6 +11,12 @@ describe("Public audio paths", () => {
 });
 
 describe("Botanical favicon paths", () => {
+  it("uses a fresh botanical icon URL on Lovable", () => {
+    expect(publicAssetPath(TAB_ICON_PATH, "/")).toBe("/favicon.png?v=botanica-2");
+  });
+  it("keeps the icon version under the GitHub repository base", () => {
+    expect(publicAssetPath(TAB_ICON_PATH, GITHUB_PAGES_BASE)).toBe("/talos-para-pilar/favicon.png?v=botanica-2");
+  });
   it("serves the favicon under the GitHub Pages base", () => {
     expect(publicAssetPath("favicon.png", GITHUB_PAGES_BASE)).toBe("/talos-para-pilar/favicon.png");
   });

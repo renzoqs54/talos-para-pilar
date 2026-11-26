@@ -9,4 +9,4 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Keep the botanical favicon in `public/favicon.png` and reference it through `publicAssetPath` in the root head so Lovable and repository-based GitHub Pages resolve the same icon.
+- Keep the botanical favicon in `public/favicon.png`, reference a versioned URL through `publicAssetPath` in the root head, and derive `public/favicon.ico` from the same image so both hosts avoid stale tab caches and legacy-icon fallbacks.

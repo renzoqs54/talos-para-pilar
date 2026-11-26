@@ -33,6 +33,8 @@ jobs:
         run: |
           test -f dist/client/index.html
           test -f dist/client/audio/natsunokiri.mp3
+          test -f dist/client/favicon.png
+          test -f dist/client/favicon.ico
           cp dist/client/index.html dist/client/404.html
           touch dist/client/.nojekyll
       - uses: actions/configure-pages@v5
